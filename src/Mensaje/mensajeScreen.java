@@ -17,6 +17,7 @@ public class mensajeScreen extends javax.swing.JFrame {
      */
     public mensajeScreen() {
         initComponents();
+        
     }
 
     /**
@@ -28,21 +29,129 @@ public class mensajeScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        contenedor = new javax.swing.JPanel();
+        header = new javax.swing.JPanel();
+        deLabel = new javax.swing.JLabel();
+        paraLabel = new javax.swing.JLabel();
+        asuntoLabel = new javax.swing.JLabel();
+        deInput = new javax.swing.JTextField();
+        paraInput = new javax.swing.JTextField();
+        asuntoPara = new javax.swing.JTextField();
+        body = new javax.swing.JPanel();
+        mensajeLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        mensajeInput = new javax.swing.JTextArea();
+
+        setTitle("MENSAJE");
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                formComponentHidden(evt);
+            }
+        });
+
+        contenedor.setLayout(null);
+
+        header.setBackground(new java.awt.Color(204, 204, 255));
+
+        deLabel.setText("De:");
+
+        paraLabel.setText("Para:");
+
+        asuntoLabel.setText("Asunto:");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deLabel)
+                    .addComponent(paraLabel)
+                    .addComponent(asuntoLabel))
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(headerLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deInput)
+                            .addComponent(paraInput)))
+                    .addGroup(headerLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(asuntoPara, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deLabel)
+                    .addComponent(deInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(paraLabel)
+                    .addComponent(paraInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(asuntoLabel)
+                    .addComponent(asuntoPara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        contenedor.add(header);
+        header.setBounds(10, 10, 410, 100);
+
+        body.setBackground(new java.awt.Color(204, 255, 204));
+
+        mensajeLabel.setText("Mensaje:");
+
+        mensajeInput.setColumns(20);
+        mensajeInput.setRows(5);
+        jScrollPane1.setViewportView(mensajeInput);
+
+        javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
+        body.setLayout(bodyLayout);
+        bodyLayout.setHorizontalGroup(
+            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addComponent(mensajeLabel)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        bodyLayout.setVerticalGroup(
+            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mensajeLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        contenedor.add(body);
+        body.setBounds(10, 120, 410, 370);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
+        this.dispose();
+    }//GEN-LAST:event_formComponentHidden
 
     /**
      * @param args the command line arguments
@@ -80,5 +189,17 @@ public class mensajeScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel asuntoLabel;
+    private javax.swing.JTextField asuntoPara;
+    private javax.swing.JPanel body;
+    private javax.swing.JPanel contenedor;
+    private javax.swing.JTextField deInput;
+    private javax.swing.JLabel deLabel;
+    private javax.swing.JPanel header;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea mensajeInput;
+    private javax.swing.JLabel mensajeLabel;
+    private javax.swing.JTextField paraInput;
+    private javax.swing.JLabel paraLabel;
     // End of variables declaration//GEN-END:variables
 }
