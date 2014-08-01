@@ -6,7 +6,8 @@ import Configuracion.variablesGenerales;
 public class conexion {
     Connection con = null;
     variablesGenerales vg = new variablesGenerales();
-    String bd, user, pass;
+    String user, pass;
+    public String bd;
 
     public conexion() {
         bd = vg.baseDeDatos;

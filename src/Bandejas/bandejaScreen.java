@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Bandejas;
-
-/**
- *
- * @author angel
- */
+import Mensaje.mensajeScreen;
+import PanelFondo.panelFondo;
 public class bandejaScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form bandejaScreen
      */
     public bandejaScreen() {
+        this.setContentPane(new panelFondo("/image/bg.jpg"));
         initComponents();
     }
 
@@ -28,16 +20,21 @@ public class bandejaScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setLayout(null);
+        setTitle("Bandeja de entrada");
+        setMinimumSize(new java.awt.Dimension(740, 540));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                formComponentHidden(evt);
+            }
+        });
+        getContentPane().setLayout(null);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -46,25 +43,45 @@ public class bandejaScreen extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jPanel1.add(jScrollPane1);
+        getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(10, 60, 200, 380);
 
         jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane2);
+        getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(220, 60, 500, 380);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Bienvenido ");
-        jPanel1.add(jLabel1);
+        getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 10, 700, 40);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButton1.setText("Enviar Mensaje");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(550, 460, 170, 27);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        mensajeScreen win=new mensajeScreen();
+        win.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
+        this.dispose();
+    }//GEN-LAST:event_formComponentHidden
 
     /**
      * @param args the command line arguments
@@ -102,9 +119,9 @@ public class bandejaScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;

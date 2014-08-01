@@ -1,23 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Mensaje;
-
-/**
- *
- * @author angel
- */
+import Automata.automataMensajes;
+import PanelFondo.panelFondo;
 public class mensajeScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form mensajeScreen
      */
     public mensajeScreen() {
+        this.setContentPane(new panelFondo("/image/bg.jpg"));
         initComponents();
-        
     }
 
     /**
@@ -29,7 +20,6 @@ public class mensajeScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contenedor = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
         deLabel = new javax.swing.JLabel();
         paraLabel = new javax.swing.JLabel();
@@ -37,26 +27,36 @@ public class mensajeScreen extends javax.swing.JFrame {
         deInput = new javax.swing.JTextField();
         paraInput = new javax.swing.JTextField();
         asuntoPara = new javax.swing.JTextField();
-        body = new javax.swing.JPanel();
-        mensajeLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        mensajeInput = new javax.swing.JTextArea();
+        body3 = new javax.swing.JPanel();
+        mensajeLabel3 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        mensajeInput3 = new javax.swing.JTextArea();
+        enviarButton = new javax.swing.JButton();
 
         setTitle("MENSAJE");
+        setMinimumSize(new java.awt.Dimension(440, 580));
+        setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
                 formComponentHidden(evt);
             }
         });
-
-        contenedor.setLayout(null);
+        getContentPane().setLayout(null);
 
         header.setBackground(new java.awt.Color(204, 204, 255));
+        header.setMinimumSize(new java.awt.Dimension(410, 150));
+        header.setOpaque(false);
 
+        deLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        deLabel.setForeground(new java.awt.Color(255, 255, 255));
         deLabel.setText("De:");
 
+        paraLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        paraLabel.setForeground(new java.awt.Color(255, 255, 255));
         paraLabel.setText("Para:");
 
+        asuntoLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        asuntoLabel.setForeground(new java.awt.Color(255, 255, 255));
         asuntoLabel.setText("Asunto:");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
@@ -77,7 +77,7 @@ public class mensajeScreen extends javax.swing.JFrame {
                             .addComponent(paraInput)))
                     .addGroup(headerLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(asuntoPara, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)))
+                        .addComponent(asuntoPara, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         headerLayout.setVerticalGroup(
@@ -98,53 +98,60 @@ public class mensajeScreen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        contenedor.add(header);
-        header.setBounds(10, 10, 410, 100);
+        getContentPane().add(header);
+        header.setBounds(10, 10, 410, 110);
 
-        body.setBackground(new java.awt.Color(204, 255, 204));
+        body3.setBackground(new java.awt.Color(204, 255, 204));
+        body3.setOpaque(false);
 
-        mensajeLabel.setText("Mensaje:");
+        mensajeLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        mensajeLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        mensajeLabel3.setText("Mensaje:");
 
-        mensajeInput.setColumns(20);
-        mensajeInput.setRows(5);
-        jScrollPane1.setViewportView(mensajeInput);
+        jScrollPane4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jScrollPane4.setHorizontalScrollBar(null);
 
-        javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
-        body.setLayout(bodyLayout);
-        bodyLayout.setHorizontalGroup(
-            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bodyLayout.createSequentialGroup()
+        mensajeInput3.setColumns(20);
+        mensajeInput3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        mensajeInput3.setLineWrap(true);
+        mensajeInput3.setRows(5);
+        jScrollPane4.setViewportView(mensajeInput3);
+
+        javax.swing.GroupLayout body3Layout = new javax.swing.GroupLayout(body3);
+        body3.setLayout(body3Layout);
+        body3Layout.setHorizontalGroup(
+            body3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(body3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                    .addGroup(bodyLayout.createSequentialGroup()
-                        .addComponent(mensajeLabel)
+                .addGroup(body3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                    .addGroup(body3Layout.createSequentialGroup()
+                        .addComponent(mensajeLabel3)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        bodyLayout.setVerticalGroup(
-            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bodyLayout.createSequentialGroup()
+        body3Layout.setVerticalGroup(
+            body3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(body3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mensajeLabel)
+                .addComponent(mensajeLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        contenedor.add(body);
-        body.setBounds(10, 120, 410, 370);
+        getContentPane().add(body3);
+        body3.setBounds(10, 130, 410, 370);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
-        );
+        enviarButton.setBackground(new java.awt.Color(255, 255, 255));
+        enviarButton.setText("Enviar");
+        enviarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(enviarButton);
+        enviarButton.setBounds(320, 500, 94, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -152,6 +159,10 @@ public class mensajeScreen extends javax.swing.JFrame {
     private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
         this.dispose();
     }//GEN-LAST:event_formComponentHidden
+
+    private void enviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarButtonActionPerformed
+        automataMensajes auto=new automataMensajes(this.deInput.getText(),this.paraInput.getText(),this.asuntoPara.getText(),this.mensajeInput3.getText());
+    }//GEN-LAST:event_enviarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,14 +202,14 @@ public class mensajeScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel asuntoLabel;
     private javax.swing.JTextField asuntoPara;
-    private javax.swing.JPanel body;
-    private javax.swing.JPanel contenedor;
+    private javax.swing.JPanel body3;
     private javax.swing.JTextField deInput;
     private javax.swing.JLabel deLabel;
+    private javax.swing.JButton enviarButton;
     private javax.swing.JPanel header;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea mensajeInput;
-    private javax.swing.JLabel mensajeLabel;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea mensajeInput3;
+    private javax.swing.JLabel mensajeLabel3;
     private javax.swing.JTextField paraInput;
     private javax.swing.JLabel paraLabel;
     // End of variables declaration//GEN-END:variables

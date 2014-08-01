@@ -9,9 +9,9 @@ public class panelFondo extends javax.swing.JPanel {
     /**
      * Creates new form panelFondo
      */
-    public panelFondo(ImageIcon img) {
+    public panelFondo(String path) {
         //initComponents();
-        imagen=img;
+        imagen=new ImageIcon(getClass().getResource(path));
     }
     
     public void paint(Graphics g){
