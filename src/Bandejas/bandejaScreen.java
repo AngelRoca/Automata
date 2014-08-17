@@ -2,7 +2,7 @@ package Bandejas;
 import Mensaje.mensajeScreen;
 import PanelFondo.panelFondo;
 public class bandejaScreen extends javax.swing.JFrame {
-
+    logInScreen win;
     /**
      * Creates new form bandejaScreen
      */
@@ -10,7 +10,12 @@ public class bandejaScreen extends javax.swing.JFrame {
         this.setContentPane(new panelFondo("/image/bg.jpg"));
         initComponents();
     }
-
+    
+    public bandejaScreen(logInScreen win){
+        this.win=win;
+        this.setContentPane(new panelFondo("/image/bg.jpg"));
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,6 +85,7 @@ public class bandejaScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
+        win.show();
         this.dispose();
     }//GEN-LAST:event_formComponentHidden
 

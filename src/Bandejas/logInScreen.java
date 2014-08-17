@@ -1,11 +1,13 @@
 package Bandejas;
 import PanelFondo.panelFondo;
+import Modelo.*;
 public class logInScreen extends javax.swing.JFrame {
-
+    logInScreen win;
     /**
      * Creates new form logInScreen
      */
     public logInScreen() {
+        win=this;
         this.setContentPane(new panelFondo("/image/bg.jpg"));
         initComponents();
     }
@@ -19,30 +21,25 @@ public class logInScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
+        userTextfield = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        passTextfield = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setTitle("Log In");
         setMinimumSize(new java.awt.Dimension(480, 220));
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentHidden(java.awt.event.ComponentEvent evt) {
-                formComponentHidden(evt);
-            }
-        });
         getContentPane().setLayout(null);
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(12, 49, 318, 30);
+        getContentPane().add(userTextfield);
+        userTextfield.setBounds(12, 49, 318, 30);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contraseña:");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(12, 103, 97, 17);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(12, 130, 318, 30);
+        getContentPane().add(passTextfield);
+        passTextfield.setBounds(12, 130, 318, 30);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -53,15 +50,26 @@ public class logInScreen extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButton1.setText("Conectar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(343, 93, 110, 27);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
-        this.dispose();
-    }//GEN-LAST:event_formComponentHidden
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        sesion sesion=new sesion(this.userTextfield.getText(),this.passTextfield.getText());
+        if(sesion.getAcceso()=="Acceso Concedido"){
+            bandejaScreen bandeja=new bandejaScreen(win);
+            bandeja.show();
+            this.userTextfield.setText("");this.passTextfield.setText("");
+            win.hide();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,7 +110,7 @@ public class logInScreen extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField passTextfield;
+    private javax.swing.JTextField userTextfield;
     // End of variables declaration//GEN-END:variables
 }

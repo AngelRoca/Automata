@@ -162,6 +162,7 @@ public class mensajeScreen extends javax.swing.JFrame {
 
     private void enviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarButtonActionPerformed
         automataMensajes auto=new automataMensajes(this.deInput.getText(),this.paraInput.getText(),this.asuntoPara.getText(),this.mensajeInput3.getText());
+        this.deInput.setText("");this.paraInput.setText("");this.asuntoPara.setText("");this.mensajeInput3.setText("");
     }//GEN-LAST:event_enviarButtonActionPerformed
 
     /**

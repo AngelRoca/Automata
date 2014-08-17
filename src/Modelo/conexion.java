@@ -35,21 +35,20 @@ public class conexion {
 
     // Recibe el nombre de la tabla, los campos a tratar, y los valores a agregar
     public boolean agregar(String tabla, String campos, String[] valores) {
-        System.out.println("Entramos a agregar");
         String query = "INSERT INTO " + tabla;
         String[] camp = campos.split(",");
         int max = camp.length;
 
         query += campos(max, camp);
         query += valores(max);
-        System.out.println(query);
+        //System.out.println(query);
         if (prepararEstados(query, valores)) {
             //Devuelve verdadero cuando ha surgido algun error
-            System.out.println("agregar falso");
+            //System.out.println("agregar falso");
             return false;
         } else {
             //Devuelve falso cuando todo ha salido bien
-            System.out.println("agregar verdadero");
+            //System.out.println("agregar verdadero");
             return true;
         }
     }
