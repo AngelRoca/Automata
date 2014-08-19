@@ -1,21 +1,41 @@
 package Automata;
-import Mensaje.mensajeScreen;
 import Bandejas.logInScreen;
+import Mensaje.mensajeScreen;
 import PanelFondo.panelFondo;
+import Modelo.conexion;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author angel
  */
 public class automataScreen extends javax.swing.JFrame {
-
+    DefaultTableModel table;
+    conexion con;
     /**
      * Creates new form automataScreen
      */
     public automataScreen() {
+        con=new conexion();
         this.setContentPane(new panelFondo("/image/bg.jpg"));
         initComponents();
+        loadUsers();
     }
 
+    public void loadUsers(){
+        table=new DefaultTableModel();
+        table.addColumn("Usuarios");
+        table.addColumn("Contraseñas");
+        this.tableUsers.setModel(table);
+        String[][] user=con.leerDatos("usuarios","user,pass", null);
+        for(int i=0;i<user.length;i++){
+            String[] data=new String[2];
+            data[0]=user[i][0];data[1]=user[i][1];
+            table.addRow(data);
+        }
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,14 +48,21 @@ public class automataScreen extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableUsers = new javax.swing.JTable();
+        botonActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GESTOR AUTOMATA");
+        setMinimumSize(new java.awt.Dimension(374, 372));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("GESTOR DE AUTOMATA");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(72, 12, 240, 40);
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Abrir Bandeja");
@@ -44,6 +71,8 @@ public class automataScreen extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(202, 82, 150, 25);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Enviar Mensaje");
@@ -52,34 +81,33 @@ public class automataScreen extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(12, 82, 160, 25);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 11, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 21, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(0, 21, Short.MAX_VALUE))
-        );
+        tableUsers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tableUsers);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(12, 119, 340, 211);
+
+        botonActualizar.setText("Actualizar");
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonActualizar);
+        botonActualizar.setBounds(130, 50, 110, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -93,6 +121,10 @@ public class automataScreen extends javax.swing.JFrame {
         logInScreen win=new logInScreen();
         win.show();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+        this.loadUsers();
+    }//GEN-LAST:event_botonActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,8 +162,11 @@ public class automataScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonActualizar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableUsers;
     // End of variables declaration//GEN-END:variables
 }

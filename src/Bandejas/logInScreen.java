@@ -29,6 +29,7 @@ public class logInScreen extends javax.swing.JFrame {
 
         setTitle("Log In");
         setMinimumSize(new java.awt.Dimension(480, 220));
+        setResizable(false);
         getContentPane().setLayout(null);
         getContentPane().add(userTextfield);
         userTextfield.setBounds(12, 49, 318, 30);
@@ -64,7 +65,7 @@ public class logInScreen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         sesion sesion=new sesion(this.userTextfield.getText(),this.passTextfield.getText());
         if(sesion.getAcceso()=="Acceso Concedido"){
-            bandejaScreen bandeja=new bandejaScreen(win);
+            bandejaScreen bandeja=new bandejaScreen(win,this.userTextfield.getText());
             bandeja.show();
             this.userTextfield.setText("");this.passTextfield.setText("");
             win.hide();

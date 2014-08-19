@@ -1,20 +1,57 @@
 package Bandejas;
 import Mensaje.mensajeScreen;
+import Modelo.conexion;
 import PanelFondo.panelFondo;
+import javax.swing.DefaultListModel;
+
 public class bandejaScreen extends javax.swing.JFrame {
     logInScreen win;
+    conexion con;
+    String user,user_id;
+    String[][] msgs;
+    
     /**
      * Creates new form bandejaScreen
      */
     public bandejaScreen() {
+        con=new conexion();
         this.setContentPane(new panelFondo("/image/bg.jpg"));
         initComponents();
     }
     
-    public bandejaScreen(logInScreen win){
+    public bandejaScreen(logInScreen win,String user){
+        con=new conexion();
+        this.user=user;
         this.win=win;
         this.setContentPane(new panelFondo("/image/bg.jpg"));
         initComponents();
+        String[] name=user.split("@");
+        this.mensajeBienvenida.setText("Bienvenid@ "+name[0]);
+        loadData();
+    }
+    
+    // Carga de datos, obtencion del id del usuario, asi como los mensajes que estan relacionados con el.
+    private void loadData(){
+        String[][] aux=con.leerDatos("usuarios","id", "user='"+this.user+"'");
+        this.user_id=aux[0][0];
+        msgs=con.leerDatos("mensajes","id,emisor,destinatario,asunto,mensaje,user_id", "user_id='"+this.user_id+"'");
+        loadAsuntos();
+        
+    }
+    
+    private void loadAsuntos(){
+        DefaultListModel model=new DefaultListModel();
+            for(int i=0;i<msgs.length;i++){
+                model.addElement(msgs[i][3]);
+            }
+        this.listaMensajes.setModel(model);
+    }
+    
+    private void loadMensajes(){
+        this.areaMensaje.setText("De: "+msgs[this.listaMensajes.getSelectedIndex()][1]+
+                "\nPara: "+msgs[this.listaMensajes.getSelectedIndex()][2]+
+                "\nAsunto: "+msgs[this.listaMensajes.getSelectedIndex()][3]+
+                "\n\n"+msgs[this.listaMensajes.getSelectedIndex()][4]);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,14 +63,15 @@ public class bandejaScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        listaMensajes = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        areaMensaje = new javax.swing.JTextArea();
+        mensajeBienvenida = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setTitle("Bandeja de entrada");
         setMinimumSize(new java.awt.Dimension(740, 540));
+        setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
                 formComponentHidden(evt);
@@ -41,29 +79,34 @@ public class bandejaScreen extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        listaMensajes.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        listaMensajes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaMensajesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listaMensajes);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(10, 60, 200, 380);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        areaMensaje.setColumns(20);
+        areaMensaje.setLineWrap(true);
+        areaMensaje.setRows(5);
+        jScrollPane2.setViewportView(areaMensaje);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(220, 60, 500, 380);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Bienvenido ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 10, 700, 40);
+        mensajeBienvenida.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        mensajeBienvenida.setForeground(new java.awt.Color(255, 255, 255));
+        mensajeBienvenida.setText("Bienvenido ");
+        getContentPane().add(mensajeBienvenida);
+        mensajeBienvenida.setBounds(10, 10, 700, 40);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -88,6 +131,10 @@ public class bandejaScreen extends javax.swing.JFrame {
         win.show();
         this.dispose();
     }//GEN-LAST:event_formComponentHidden
+
+    private void listaMensajesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMensajesMouseClicked
+        this.loadMensajes();
+    }//GEN-LAST:event_listaMensajesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -125,11 +172,11 @@ public class bandejaScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaMensaje;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JList listaMensajes;
+    private javax.swing.JLabel mensajeBienvenida;
     // End of variables declaration//GEN-END:variables
 }

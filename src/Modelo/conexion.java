@@ -140,10 +140,9 @@ public class conexion {
         if ((rows = getRows(tabla)) == -1) {
             return null;
         }
-
         String[] columnas = campos.split(",");
         columns = columnas.length;
-        String[][] data = new String[rows][columns];
+        String[][] data=null;
         String query = "SELECT " + campos + " FROM " + tabla + " WHERE " + condicion;
 
         ResultSet res;
@@ -152,6 +151,9 @@ public class conexion {
                 return null;
             }
             int i = 0;
+            res.last();
+            data = new String[res.getRow()][columns];
+            res.beforeFirst();
             while (res.next()) {
                 for (int j = 0; j < columns; j++) {
                     data[i][j] = res.getString(columnas[j]);
@@ -162,7 +164,7 @@ public class conexion {
                 return null;
             }
             res.close();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Problemas en leerDatos(campos,tabla,condicion: ):\n" + e);
             return null;
         }
